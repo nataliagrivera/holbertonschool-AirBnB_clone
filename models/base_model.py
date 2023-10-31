@@ -27,8 +27,7 @@ class BaseModel:
         else:
             # If no keyword arguments are provided, generate new values
             self.id = str(uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+            self.created_at = self.updated_at = datetime.now()
             
     def __str__(self):
         """str method"""
