@@ -19,11 +19,13 @@ class BaseModel:
             create_at: datetime when the object is created
             updated_at: datetime when the object is updated"""
         for k, v in kwargs.items():
-            if k != '__class__':
-                if k in ['created_at', 'updated_at']:
-                    setattr(self, k, datetime.strptime(v, '%Y-%m-%dT%H:%M:%S.%f'))
-                else:
-                    setattr(self, k, v)
+            if k == 'created_at' or k == 'updated_at':
+                continue
+            if k in ['created_at', 'updated_at']:
+                setattr(self, k, datetime.strptime(v, '%Y-%m-%dT%H:%M:%S.%f'))
+            
+            else:
+                setattr(self, k, v)
 
         else:
             # If no keyword arguments are provided, generate new values
