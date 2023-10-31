@@ -9,21 +9,16 @@ import json
 # Define the BaseModel class
 class BaseModel:
     def __init__(self, *args, **kwargs):
-        """Initialization method
-        Args:
-            *args: unsused argument.
-            **kwargs: pairs of key/value (dictionary)
-
-        Attributes:
-            id: unique id given by uuid4()
-            create_at: datetime when the object is created
-            updated_at: datetime when the object is updated"""
-        for k, v in kwargs.items():
-            if k != '__class__':
+      
+        if kwargs:
+            # If keyword arguments are provided, initialize the instance attributes
+            for k, v in kwargs.items():
                 if k == 'created_at' or k == 'updated_at':
-                    setattr(self, k, datetime.strptime(
-                        v, '%Y-%m-%dT%H:%M:%S.%f'))
-            else:
+                    # If the key is 'created_at' or 'updated_at', convert the value to a datetime object
+                    setattr(self, k, datetime.strptime(v, '%Y-%m-%dT%H:%M:%S.%f'))
+                elif k != '__class__':
+                    # For other keys (excluding '__class__'), set the attribute to the provided value
+                    setattr(self, k, v)
                 setattr(self, k, v)
 
         else:
