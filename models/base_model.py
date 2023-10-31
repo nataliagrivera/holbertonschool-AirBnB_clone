@@ -9,7 +9,7 @@ import json
 # Define the BaseModel class
 class BaseModel:
     def __init__(self, *args, **kwargs):
-      
+
         if kwargs:
             # If keyword arguments are provided, initialize the instance attributes
             for k, v in kwargs.items():
@@ -19,7 +19,6 @@ class BaseModel:
                 elif k != '__class__':
                     # For other keys (excluding '__class__'), set the attribute to the provided value
                     setattr(self, k, v)
-                setattr(self, k, v)
 
         else:
             # If no keyword arguments are provided, generate new values
