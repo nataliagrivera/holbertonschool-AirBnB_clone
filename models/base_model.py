@@ -33,7 +33,7 @@ class BaseModel:
     def to_dict(self):
         """Return a dictionary containing object attributes for serialization"""
         obj_dict = self.__dict__.copy()  # Create a copy of the object's attributes
-        obj_dict["__class__"] = self.__class__.__name
+        obj_dict["__class__"] = self.__class__.__name__
         obj_dict["created_at"] = self.created_at.isoformat()
         obj_dict["updated_at"] = self.updated_at.isoformat()
         return obj_dict
