@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Module BaseModel Class"""
 from datetime import datetime
-from uuid import uuid4
-from models import storage
+import models
+import uuid
 
 class BaseModel:
     def __init__(self, *args, **kwargs):
@@ -10,16 +10,16 @@ class BaseModel:
             # If keyword arguments are provided, initialize the instance attributes
             for key, value in kwargs.items():
                 if key == "__class__":
-                    continue
+                    pass
                 elif key == "created_at" or key == "updated_at":
                     setattr(self, key, datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
                 else:
                     setattr(self, key, value)
         else:
             # If no keyword arguments are provided, generate new values
-            self.id = str(uuid4())
+            self.id = str(uuid.uuid4())
             self.created_at = self.updated_at = datetime.now()
-            storage.new(self)  # Add the new object to the storage system
+            models.storage.new(self)  # Add the new object to the storage system
             
     def __str__(self):
         """String representation of the object"""
@@ -28,7 +28,7 @@ class BaseModel:
     def save(self):
         """Update the 'updated_at' attribute with the current datetime and save the object"""
         self.updated_at = datetime.now()  # Update the 'updated_at' attribute with the current datetime
-        storage.save()  # Save the object using the storage system
+        models.storage.save()  # Save the object using the storage system
 
     def to_dict(self):
         """Return a dictionary containing object attributes for serialization"""
