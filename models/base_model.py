@@ -4,6 +4,7 @@
 from datetime import datetime
 from uuid import uuid4
 import json
+from models import storage
 
 
 # Define the BaseModel class
@@ -24,6 +25,7 @@ class BaseModel:
             # If no keyword arguments are provided, generate new values
             self.id = str(uuid4())
             self.created_at = self.updated_at = datetime.now()
+            storage.new(self)
             
     def __str__(self):
         """str method"""
@@ -32,6 +34,7 @@ class BaseModel:
     def save(self):
         """Updates the public instance attribute updated_at with datetime"""
         self.updated_at = datetime.now()  # Update the update date and time
+        storage.save()
 
     def to_dict(self):
         """Returns a dictionary containing all keys/values of __dict__ """
