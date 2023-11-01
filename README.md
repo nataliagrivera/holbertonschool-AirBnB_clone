@@ -6,6 +6,7 @@ This project shows the initial stage of the Airbnb Clone project: The console co
  
 ## How to install
 
+
 Clone the repository: git clone git@github.com:nataliagrivera/holbertonschool-AirBnB_clone.git   
 Access the repository: cd holbertonschool-AirBnB_clone
 
