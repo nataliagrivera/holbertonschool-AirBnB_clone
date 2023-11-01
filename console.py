@@ -2,9 +2,9 @@
 """Module that defines class HBNBCommand"""
 
 import cmd
-from models import storage
 from models.base_model import BaseModel
 from models.user import User
+from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """Class containing the entry point of the command interpreter"""
@@ -79,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
         elif args[0] not in storage.all_classes():
             print("** class doesn't exist **")
         else:
-            print([str(obj) for obj in storage.all().values() if type(obj).__name__ == args[0])
+            print([str(obj) for obj in storage.all_classes()[args[0]].all()])
 
     def do_update(self, arg):
         """Updates an instance based on the class name and ID by adding or updating an attribute"""
