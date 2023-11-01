@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import json
 import os
+import models
 """
 Contains a class File Storage
 which serializes instances to a JSON file
@@ -32,8 +33,9 @@ class FileStorage:
         """Deserializes the JSON file to __objects (only if the JSON file (__file_path) exists)"""
         if os.path.isfile(self._file_path):
             with open(self._file_path, 'r') as f:
-                data = json.load(f)
-                for key, obj_dict in data.items():
-                    class_name, obj_id = key.split(".")
-                    obj_dict['__class__'] = class_name
-                    self._objects[key] = eval(class_name)(**obj_dict)
+                self._objects = json.loads(f.read())
+                for key, obj_dict in self._objects.items():
+                    self._objects[key] = eval(obj_dict["__class__"])(**obj_dict)
+
+        else:
+            pass
