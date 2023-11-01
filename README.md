@@ -12,6 +12,16 @@ Access the repository: cd holbertonschool-AirBnB_clone
 
 ## How to Use the Command Interpreter
 
+| Commands |    Usage Example  |       Functionality           |    
+|---|---|---|  
+|  help    |    help    | Display help message. |  
+|  create  | create <class>  | Create a new instance of BaseModel, save it to a JSON file, and print the ID. |  
+|  show    | User .show('324') | Prints the string representation of an instance based on the class name and ID. |  
+|  destroy | User .destroy('324') | Deletes an instance based on the class name and ID. |  
+|  update  | User .update('321', {'name', : 'Bob'}) | Updates an instance based on the class name and ID by adding or updating an attribute. |   
+|  all     | User .all() | Prints string representation of all instances based on the class name. |   
+|  quit    | quit  | Exits the program. |  
+
 ## Usage
 
 ## Authors
