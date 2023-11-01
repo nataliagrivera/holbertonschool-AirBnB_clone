@@ -1,44 +1,37 @@
 #!/usr/bin/python3
+"""Module file_storage"""
 import json
 from models.base_model import BaseModel
-"""
-Contains a class File Storage
-which serializes instances to a JSON file
-and deserializes JSON file to instances
-"""
 
 
-class FileStorage:
-    """Serializes instances to a JSON file"""
+class FileStorage():
+    """FileStorage class"""
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
         """Returns the dictionary __objects"""
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
-        """Sets in __objects the obj with key <obj class name>.id"""
-        name = f"{obj.__class__.__name__}.{obj.id}"
-        self.__objects[name] = obj
+        """Sets in __objects the obj"""
+        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
 
     def save(self):
-        """Serializes __objects to the JSON file (path: __file_path)"""
-        serialized_objects = {}
-        for key, obj in self.__objects.items():
-            serialized_objects[key] = obj.to_dict()
-        with open(self.__file_path, 'w') as f:
-            for key, obj in self.__objects.items():
-                serialized_objects[key] = obj.to_dict()
-            json.dump(serialized_objects, f)
+        """Serializes __objects to the JSON file"""
+        objects_dict = {}
+        for key, value in self.__objects.items():
+            objects_dict[key] = value.to_dict()
+        with open(self.__file_path, "w", encoding='utf-8') as f:
+            json.dump(objects_dict, f)
 
     def reload(self):
-        """Deserializes the JSON file to __objects
-        (only if the JSON file (__file_path) exists)"""
+        """Deserializes the JSON file to __objects"""
         try:
-            with open(self.__file_path, 'r') as f:
-                self.__objects = json.loads(f.read())
-                for key, obj in self.__objects.items():
-                    self.__objects[key] = eval(obj["__class__"])(**obj)
-        except FileNotFoundError:
+            with open(self.__file_path, "r", encoding='utf-8') as f:
+                json_data = json.load(f)
+                self.__objects = {}
+                for key, value in json_data.items():
+                    self.__objects[key] = BaseModel(**value)
+        except Exception:
             pass
