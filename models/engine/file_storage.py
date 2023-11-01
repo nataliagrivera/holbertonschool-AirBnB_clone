@@ -1,14 +1,15 @@
 #!/usr/bin/python3
 import json
-import os
-import models
+from models.base_model import BaseModel
 """
 Contains a class File Storage
 which serializes instances to a JSON file
 and deserializes JSON file to instances
 """
 
+
 class FileStorage:
+    """Serializes instances to a JSON file"""
     __file_path = "file.json"
     __objects = {}
 
@@ -32,11 +33,12 @@ class FileStorage:
             json.dump(serialized_objects, f)
 
     def reload(self):
-        """Deserializes the JSON file to __objects (only if the JSON file (__file_path) exists)"""
+        """Deserializes the JSON file to __objects
+        (only if the JSON file (__file_path) exists)"""
         try:
             with open(self.__file_path, 'r') as f:
                 self.__objects = json.loads(f.read())
-                for key, obj_dict in self.__objects.items():
-                    self.__objects[key] = eval(obj_dict["__class__"])(**obj_dict)
+                for key, obj in self.__objects.items():
+                    self.__objects[key] = eval(obj["__class__"])(**obj)
         except FileNotFoundError:
             pass
