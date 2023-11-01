@@ -41,8 +41,4 @@ class FileStorage:
                 for key, obj in self.__objects.items():
                     self.__objects[key] = eval(obj["__class__"])(**obj)
         except FileNotFoundError:
-            print("File not found. No data loaded.")
-        except json.JSONDecodeError:
-            print("Error decoding JSON data. No data loaded.")
-        except Exception as e:
-            print(f"An error occurred while loading data: {e}")
+            pass
