@@ -9,17 +9,17 @@ class BaseModel:
         if kwargs:
             # If keyword arguments are provided, initialize the instance attributes
             for key, value in kwargs.items():
-                if key == 'created_at' or key == 'updated_at':
-                    # If the key is 'created_at' or 'updated_at', convert the value to a datetime object
-                    setattr(self, key, datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
-                elif key != '__class__':
-                    # For other keys (excluding '__class__'), set the attribute to the provided value
+                if key == "__class__":
+                    continue
+                elif key == "created_at" or key == "updated_at":
+                    setattr(self, key, datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                else:
                     setattr(self, key, value)
         else:
             # If no keyword arguments are provided, generate new values
             self.id = str(uuid4())
             self.created_at = self.updated_at = datetime.now()
-            storage.new(self)
+            storage.new(self)  # Add the new object to the storage system
             
     def __str__(self):
         """String representation of the object"""
