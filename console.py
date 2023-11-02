@@ -4,11 +4,20 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
+from models.place import Place
+
 
 class HBNBCommand(cmd.Cmd):
     """Class containing the entry point of the command interpreter"""
 
     prompt = '(hbnb) '
+    classes = ['BaseModel', 'User', 'State',
+            'City', 'Amenity', 'Place', 'Review']
 
     def do_help(self, arg):
         """Display help message"""
@@ -32,11 +41,25 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif arg not in storage.all_classes():
             print("** class doesn't exist **")
+        
         else:
-            new_instance = storage.all_classes()[arg]()
+            if arg == "BaseModel":
+                new_instance = BaseModel()
+            elif arg == "User":
+                new_instance = User()
+            elif arg == "State":
+                new_instance = State()
+            elif arg == "City":
+                new_instance = City()
+            elif arg == "Amenity":
+                new_instance = Amenity()
+            elif arg == "Review":
+                new_instance = Review()
+            elif arg == "Place":
+                new_instance = Place()
             new_instance.save()
             print(new_instance.id)
-
+            
     def do_show(self, arg):
         """Prints the string representation of an instance based on the class name and ID"""
         args = arg.split()
