@@ -12,7 +12,7 @@ class TestState(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.state1 = State()
-        cls.state1.name = "North_Carolina_AKA_THE_BEST_STATE"
+        cls.state1.name = "Alaska"
 
     @classmethod
     def tearDownClass(cls):

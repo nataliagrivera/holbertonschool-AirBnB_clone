@@ -12,8 +12,8 @@ class TestReview(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.rev1 = Review()
-        cls.rev1.place_id = "Raleigh"
-        cls.rev1.user_id = "Greg"
+        cls.rev1.place_id = "Anchorage"
+        cls.rev1.user_id = "John"
         cls.rev1.text = "Grade A"
 
     @classmethod
