@@ -50,12 +50,17 @@ class HBNBCommand(cmd.Cmd):
         """Prints the string representation of an instance based on the class name and ID"""
         args = arg.split()
         if not arg:
+            # check if arg is empty
             print("** class name missing **")
-        elif args[0] not in globals():
+            # check if class name exists
+        elif args[0] not in globals() or not \
+            issubclass(globals()[args[0]], BaseModel):
             print("** class doesn't exist **")
+        # check if id is empty
         elif len(args) == 1:
             print("** instance id missing **")
         else:
+            #concatenate class name and id
             key = args[0] + '.' + args[1]
             if key in storage.all():
                 print(storage.all()[key])
@@ -64,7 +69,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and ID"""
+        # split arg into list of arguments
         args = arg.split()
+        # check if arg is empty
         if not arg:
             print("** class name missing **")
         elif args[0] not in globals():
@@ -72,9 +79,12 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 1:
             print("** instance id missing **")
         else:
+            # concatenate class name and id
             key = args[0] + '.' + args[1]
+            # check if key exists in storage
             if key in storage.all():
                 del storage.all()[key]
+                # save changes to json file
                 storage.save()
             else:
                 print("** no instance found **")
