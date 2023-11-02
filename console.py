@@ -74,8 +74,11 @@ class HBNBCommand(cmd.Cmd):
         # check if arg is empty
         if not arg:
             print("** class name missing **")
-        elif args[0] not in globals():
+            #checks if class name exists
+        elif args[0] not in globals() or not \
+            issubclass(globals()[args[0]], BaseModel)
             print("** class doesn't exist **")
+            # check if id is empty
         elif len(args) == 1:
             print("** instance id missing **")
         else:
