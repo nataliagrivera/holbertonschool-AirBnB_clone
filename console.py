@@ -16,8 +16,6 @@ class HBNBCommand(cmd.Cmd):
     """Class containing the entry point of the command interpreter"""
 
     prompt = '(hbnb) '
-    classes = ['BaseModel', 'User', 'State',
-            'City', 'Amenity', 'Place', 'Review']
 
     def do_help(self, arg):
         """Display help message"""
@@ -39,33 +37,21 @@ class HBNBCommand(cmd.Cmd):
         """Create a new instance of BaseModel, save it to a JSON file, and print the ID"""
         if not arg:
             print("** class name missing **")
-        elif arg not in storage.all_classes():
+        elif arg not in globals():  
+            issubclass(globals()[arg], BaseModel)
             print("** class doesn't exist **")
         
         else:
-            if arg == "BaseModel":
-                new_instance = BaseModel()
-            elif arg == "User":
-                new_instance = User()
-            elif arg == "State":
-                new_instance = State()
-            elif arg == "City":
-                new_instance = City()
-            elif arg == "Amenity":
-                new_instance = Amenity()
-            elif arg == "Review":
-                new_instance = Review()
-            elif arg == "Place":
-                new_instance = Place()
+            new_instance = globals()[arg]()
             new_instance.save()
-            print(new_instance.id)
-            
+            print(new_instance)
+
     def do_show(self, arg):
         """Prints the string representation of an instance based on the class name and ID"""
         args = arg.split()
         if not arg:
             print("** class name missing **")
-        elif args[0] not in storage.all_classes():
+        elif args[0] not in globals():
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
@@ -81,7 +67,7 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         if not arg:
             print("** class name missing **")
-        elif args[0] not in storage.all_classes():
+        elif args[0] not in globals():
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
