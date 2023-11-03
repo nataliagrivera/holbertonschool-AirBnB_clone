@@ -13,8 +13,10 @@ class BaseModel:
             # initialize the instance attributes
             for key, value in kwargs.items():
                 if key == "__class__":
+                    # Skip the __class__ key
                     pass
                 elif key == "created_at" or key == "updated_at":
+                    # Convert the datetime strings to datetime objects
                     setattr(self, key,
                             datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
                 else:
@@ -33,15 +35,18 @@ class BaseModel:
     def save(self):
         """Update the 'updated_at' attribute with the current
         datetime and save the object"""
-        self.updated_at = datetime.now()  # Update the 'updated_at'
-        # attribute with the current datetime
-        models.storage.save()  # Save the object using the storage system
+        # Update the 'updated_at' attribute with the current datetime
+        self.updated_at = datetime.now()
+        # Save the object using the storage system
+        models.storage.save()
 
     def to_dict(self):
         """Return a dictionary containing
         object attributes for serialization"""
         obj_dict = self.__dict__.copy()  # Create a copy of the attributes
         obj_dict["__class__"] = self.__class__.__name__
+        # Update the 'created_at' and 'updated_at' attributes
+        # to use the ISO 8601 format
         obj_dict["created_at"] = self.created_at.isoformat()
         obj_dict["updated_at"] = self.updated_at.isoformat()
         return obj_dict
