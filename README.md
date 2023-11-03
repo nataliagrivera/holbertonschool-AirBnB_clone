@@ -17,7 +17,6 @@ This project shows the initial stage of the Airbnb Clone project: The console co
 * uuid: This library provides functions for generating and working with universally unique identifiers (UUIDs)
 * json: This library is used for working with JSON data, including encoding and decoding JSON data.
 * unittest: This is the Python standard library's unit testing framework. It is used for writing and running unit tests for your code.
-* os: The os module provides a way of using operating system-dependent functionality in Python. It is commonly used for tasks like file and directory manipulation.
     
 ## The Console  
 
