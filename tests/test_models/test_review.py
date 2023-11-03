@@ -8,9 +8,15 @@ from models.base_model import BaseModel
 
 
 class TestReview(unittest.TestCase):
+    """
+    Test class for the Review model.
+    """
 
     @classmethod
     def setUpClass(cls):
+        """
+        Set up the test environment by creating a Review instance.
+        """
         cls.rev1 = Review()
         cls.rev1.place_id = "Anchorage"
         cls.rev1.user_id = "John"
@@ -18,6 +24,9 @@ class TestReview(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        """
+        Clean up the test environment by deleting the Review instance and file.json if it exists.
+        """
         del cls.rev1
         try:
             os.remove("file.json")
@@ -33,12 +42,21 @@ class TestReview(unittest.TestCase):
 #        self.assertEqual(p.total_errors, 0, "fix pep8")
 
     def test_is_subclass(self):
+        """
+        Test if the Review class is a subclass of BaseModel.
+        """
         self.assertTrue(issubclass(self.rev1.__class__, BaseModel), True)
 
     def test_checking_for_functions(self):
+        """
+        Test if the Review class has docstrings.
+        """
         self.assertIsNotNone(Review.__doc__)
 
     def test_has_attributes(self):
+        """
+        Test if Review class has the expected attributes.
+        """
         self.assertTrue('id' in self.rev1.__dict__)
         self.assertTrue('created_at' in self.rev1.__dict__)
         self.assertTrue('updated_at' in self.rev1.__dict__)
@@ -47,15 +65,24 @@ class TestReview(unittest.TestCase):
         self.assertTrue('user_id' in self.rev1.__dict__)
 
     def test_attributes_are_strings(self):
+        """
+        Test if attributes of the Review instance are of string type.
+        """
         self.assertEqual(type(self.rev1.text), str)
         self.assertEqual(type(self.rev1.place_id), str)
         self.assertEqual(type(self.rev1.user_id), str)
 
     def test_save(self):
+        """
+        Test the 'save' method of the Review class.
+        """
         self.rev1.save()
         self.assertNotEqual(self.rev1.created_at, self.rev1.updated_at)
 
     def test_to_dict(self):
+        """
+        Test if the 'to_dict' method is present in the Review class.
+        """
         self.assertEqual('to_dict' in dir(self.rev1), True)
 
 
