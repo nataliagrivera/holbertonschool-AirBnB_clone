@@ -8,14 +8,20 @@ from models.base_model import BaseModel
 
 
 class TestPlace(unittest.TestCase):
+    """
+    Test cases for the Place class.
+    """
 
     @classmethod
     def setUpClass(cls):
+        """
+        Set up the test environment for the Place class.
+        """
         cls.place1 = Place()
-        cls.place1.city_id = "Somewhere in India"
-        cls.place1.user_id = "Aladdin"
-        cls.place1.name = "Taj Mahal"
-        cls.place1.description = "Fit for a king"
+        cls.place1.city_id = "Somewhere in Alaska"
+        cls.place1.user_id = "John"
+        cls.place1.name = "Columbia Glacier"
+        cls.place1.description = "Alaska's most famous glacier"
         cls.place1.number_rooms = 0
         cls.place1.number_bathrooms = 0
         cls.place1.max_guest = 0
@@ -26,6 +32,9 @@ class TestPlace(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        """
+        Clean up the test enviroment for the Place class
+        """
         del cls.place1
         try:
             os.remove("file.json")
@@ -41,12 +50,21 @@ class TestPlace(unittest.TestCase):
 #        self.assertEqual(p.total_errors, 0, "fix pep8")
 
     def test_is_subclass(self):
+        """
+        Test if Place is a subclass of a BaseModel.
+        """
         self.assertTrue(issubclass(self.place1.__class__, BaseModel), True)
 
     def test_checking_for_functions(self):
+        """
+        Test if Place has a docstring.
+        """
         self.assertIsNotNone(Place.__doc__)
 
     def test_has_attributes(self):
+        """
+        Test if Place class has the required attributes.
+        """
         self.assertTrue('id' in self.place1.__dict__)
         self.assertTrue('created_at' in self.place1.__dict__)
         self.assertTrue('updated_at' in self.place1.__dict__)
@@ -63,6 +81,9 @@ class TestPlace(unittest.TestCase):
         self.assertTrue('amenity_ids' in self.place1.__dict__)
 
     def test_attributes_are_strings(self):
+        """
+        Test if the attributes of Place class have the correct data types.
+        """
         self.assertEqual(type(self.place1.city_id), str)
         self.assertEqual(type(self.place1.user_id), str)
         self.assertEqual(type(self.place1.name), str)
@@ -76,10 +97,16 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(type(self.place1.amenity_ids), list)
 
     def test_save(self):
+        """
+        Test if the save method updates the 'update_at' attribute.
+        """
         self.place1.save()
         self.assertNotEqual(self.place1.created_at, self.place1.updated_at)
 
     def test_to_dict(self):
+        """
+        Test if the 'to_dict' method is present in the Place class.
+        """
         self.assertEqual('to_dict' in dir(self.place1), True)
 
 
