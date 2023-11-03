@@ -4,24 +4,20 @@
 
 This project shows the initial stage of the Airbnb Clone project: The console component. Within this repository, you will find a command interpreter and a set of classes, including the BaseModel class and various classes derived from it, such as User, State, City, Place, and others. The command interpreter, much like a shell, can be activated to accept user input and execute specific operations for handling object instances.
 
-## Language Used
+## Requirements
+
+### Language Used
 
 * Python
 
-## Libraries Used
+### Libraries Used
 
 * cmd: This is a standard library module in Python that provides a framework for building line-oriented command interpreters.
-* models.base_model: A custom module or class named BaseModel located in a file within a package named "models."
-* models.storage: A custom module or class named storage located in a file within the "models" package.
-* models.user: A custom module or class, this one named User from the "models" package.
-* models.state: A custom module or class named State from the "models" package.
-* models.city: A custom module or class named City from the "models" package.
-* models.amenity: A custom module or class named Amenity from the "models" package.
-* models.review: A custom module or class named Review from the "models" package.
-* models.place: A custom module or class named Place from the "models" package.
 * datetime: This library is used for working with dates and times.
-* models: A user-defined or project-specific module or package.
 * uuid: This library provides functions for generating and working with universally unique identifiers (UUIDs)
+* json: This library is used for working with JSON data, including encoding and decoding JSON data.
+* unittest: This is the Python standard library's unit testing framework. It is used for writing and running unit tests for your code.
+* os: The os module provides a way of using operating system-dependent functionality in Python. It is commonly used for tasks like file and directory manipulation.
     
 ## The Console  
 
