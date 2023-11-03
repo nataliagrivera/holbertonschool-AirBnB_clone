@@ -1,5 +1,5 @@
+#!/usr/bin/python3
 import cmd
-from engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
@@ -33,24 +33,32 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """Create a new instance of BaseModel, save it to a JSON file, and print the ID"""
-        # check if arg is empty
+        """Creates a new instance of BaseModel, saves it (to the JSON file)
+        and prints the id."""
         if not arg:
             print("** class name missing **")
-
-        # check if class name exists
-        elif arg not in globals() or not \
-            issubclass(globals()[arg], BaseModel):
+        elif arg not in ["BaseModel", "User", "State",
+                        "City", "Amenity", "Review", "Place"]:
             print("** class doesn't exist **")
-        
         else:
-        # create new instance of class
-            new_instance = globals()[arg]()
-            # save new instance to json file
+            if arg == "BaseModel":
+                new_instance = BaseModel()
+            elif arg == "User":
+                new_instance = User()
+            elif arg == "State":
+                new_instance = State()
+            elif arg == "City":
+                new_instance = City()
+            elif arg == "Amenity":
+                new_instance = Amenity()
+            elif arg == "Review":
+                new_instance = Review()
+            elif arg == "Place":
+                new_instance = Place()
             new_instance.save()
-            # print id of new instance
             print(new_instance.id)
 
+            
     def do_show(self, arg):
         """Prints the string representation of an instance based on the class name and ID"""
         args = arg.split()
@@ -125,6 +133,30 @@ class HBNBCommand(cmd.Cmd):
             for key, obj in storage.all().items():
                 if key.split(".")[0] == args[0]:
                     print(obj)
+
+    def do_update(self, arg):
+        """Updates an instance based on the class name and id by adding or
+        updating attribute (save the change into the JSON file)."""
+        args = arg.split()
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] not in ["BaseModel", "User", "State",
+                            "City", "Amenity", "Review", "Place"]:
+            print("** class doesn't exist **")
+        elif len(args) == 1:
+            print("** instance id missing **")
+        elif len(args) == 2:
+            print("** attribute name missing **")
+        elif len(args) == 3:
+            print("** value missing **")
+        else:
+            key = args[0] + "." + args[1]
+            if key not in storage.all():
+                print("** no instance found **")
+            else:
+                setattr(storage.all()[key], args[2], args[3])
+                storage.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
