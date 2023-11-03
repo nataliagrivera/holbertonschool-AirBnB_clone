@@ -90,9 +90,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             #checks if class name exists
         elif args[0] not in globals() or not \
-
             issubclass(globals()[args[0]], BaseModel):
-
             print("** class doesn't exist **")
             # check if id is empty
         elif len(args) == 1:
@@ -107,7 +105,7 @@ class HBNBCommand(cmd.Cmd):
                 storage.save()
             else:
                 print("** no instance found **")
-
+    # error when running /.console.py CHECK CODE!!!!
     def do_all(self, arg):
         """Prints string representation of all instances based on the class name"""
         args = arg.split()
@@ -122,7 +120,7 @@ class HBNBCommand(cmd.Cmd):
             # print all instances of class name
             print([str(obj) for obj in storage.classes()[args[0]].all()])
 
-
+    # check code, error message: ** attribute doesn't exist **
     def do_update(self, arg):
         """Updates an instance based on the class name and ID by adding or updating an attribute"""
         args = arg.split()
