@@ -1,10 +1,18 @@
 # Holbertonschool-AirBnB_clone
 
-## Description
+## Project Description
 
 This project shows the initial stage of the Airbnb Clone project: The console component. Within this repository, you will find a command interpreter and a set of classes, including the BaseModel class and various classes derived from it, such as User, State, City, Place, and others. The command interpreter, much like a shell, can be activated to accept user input and execute specific operations for handling object instances.
  
-## How to install
+## The Console  
+
+The console is a command line interpreter. Through the command line interpreter allows us to perform various actions, such as:
+
+* Creating a data model.
+* Manage (create, update, destroy, etc) objects via a console / command interpreter.
+* Store and retrieve objects from a file (JSON file).
+
+## How to start the console
 
 
 Clone the repository: git clone git@github.com:nataliagrivera/holbertonschool-AirBnB_clone.git   
