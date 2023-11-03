@@ -1,7 +1,5 @@
-#!/usr/bin/python3
-"""Module that defines class HBNBCommand"""
-
 import cmd
+from engine.file_storage import FileStorage
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
@@ -17,6 +15,7 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = '(hbnb) '
 
+    # def __init__(self):what
     def do_help(self, arg):
         """Display help message"""
         super().do_help(arg)
@@ -75,6 +74,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             #concatenate class name and id
             key = args[0] + '.' + args[1]
+            # check if key exists in storage
             if key in storage.all():
                 print(storage.all()[key])
             else:
@@ -101,68 +101,30 @@ class HBNBCommand(cmd.Cmd):
             # check if key exists in storage
             if key in storage.all():
                 del storage.all()[key]
-                # save changes to json file
+                #save changes to JSON file
                 storage.save()
             else:
                 print("** no instance found **")
-    # error when running /.console.py CHECK CODE!!!!
+                return
+
     def do_all(self, arg):
-        """Prints string representation of all instances based on the class name"""
+        """Prints the string representation of all instances of the specified class or all instances if no class is specified"""
+        # split arg into list of arguments
         args = arg.split()
-        if not arg:
+        if len(args) == 0:
             # print all instances
             for key, obj in storage.all().items():
                 print(obj)
-        elif args[0] not in storage.classes():
-            # print error message
-            print("** class doesn't exist **")
         else:
-            # print all instances of class name
-            print([str(obj) for obj in storage.classes()[args[0]].all()])
-
-    # check code, error message: ** attribute doesn't exist **
-    def do_update(self, arg):
-        """Updates an instance based on the class name and ID by adding or updating an attribute"""
-        args = arg.split()
-        # check if class name exists
-        if not arg:
-            print("** class name missing **")
-            return
-        elif args[0] not in globals():
-            print("** class doesn't exist **")
-            return
-        # check if id is empty
-        elif len(args) == 1:
-            print("** instance id missing **")
-            return
-        # check if attribute name exists
-        elif args[2] not in globals()[args[0]].__dict__:
-            print("** attribute doesn't exist **")
-            return
-        # check if attribute value is empty
-        elif args[3] == "":
-            print("** attribute value cannot be empty **")
-            return
-        else:
-            # concatenate class name and id
-            key = args[0] + '.' + args[1]
-            if key in storage.all():
-                # get object from storage
-                obj = storage.all()[key]
-                # try to convert attribute value to int or float
-                try:
-                    setattr(obj, args[2], int(args[3]))
-                except ValueError:
-                    pass
-                try:
-                    setattr(obj, args[2], float(args[3]))
-                except ValueError:
-                    pass
-                # save changes to json file
-                obj.save()
-            else:
-                print("** no instance found **")
-
+            # check if class name exists
+            if args[0] not in globals() or not \
+                    issubclass(globals()[args[0]], BaseModel):
+                print("** class doesn't exist **")
+                return
+            # print all instances of the specified class
+            for key, obj in storage.all().items():
+                if key.split(".")[0] == args[0]:
+                    print(obj)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
