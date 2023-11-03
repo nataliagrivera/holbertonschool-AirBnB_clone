@@ -3,7 +3,21 @@
 ## Project Description
 
 This project shows the initial stage of the Airbnb Clone project: The console component. Within this repository, you will find a command interpreter and a set of classes, including the BaseModel class and various classes derived from it, such as User, State, City, Place, and others. The command interpreter, much like a shell, can be activated to accept user input and execute specific operations for handling object instances.
- 
+
+## Requirements
+
+### Language Used
+
+* Python
+
+### Libraries Used
+
+* cmd: This is a standard library module in Python that provides a framework for building line-oriented command interpreters.
+* datetime: This library is used for working with dates and times.
+* uuid: This library provides functions for generating and working with universally unique identifiers (UUIDs)
+* json: This library is used for working with JSON data, including encoding and decoding JSON data.
+* unittest: This is the Python standard library's unit testing framework. It is used for writing and running unit tests for your code.
+    
 ## The Console  
 
 The console is a command line interpreter. Through the command line interpreter allows us to perform various actions, such as:
