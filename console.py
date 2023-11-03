@@ -101,18 +101,19 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
 
-        def do_all(self, arg):
-            """Prints string representation of all instances based on the class name"""
-            args = arg.split()
-            if not arg:
-                # print all instances
-                for key, obj in storage.all().items():
-                    print(obj)
-            elif args[0] not in storage.classes():
-                # print error message
-                print("** class doesn't exist **")
-            else:
-                print([str(obj) for obj in storage.all_classes()[args[0]].all()])
+    def do_all(self, arg):
+        """Prints string representation of all instances based on the class name"""
+        args = arg.split()
+        if not arg:
+            # print all instances
+            for key, obj in storage.all().items():
+                print(obj)
+        elif args[0] not in storage.classes():
+            # print error message
+            print("** class doesn't exist **")
+        else:
+            # print all instances of class name
+            print([str(obj) for obj in storage.classes()[args[0]].all()])
 
 
     def do_update(self, arg):
@@ -143,10 +144,17 @@ class HBNBCommand(cmd.Cmd):
             if key in storage.all():
                 # get object from storage
                 obj = storage.all()[key]
-                # convert attribute value to int or float if possible
-                setattr(obj, args[2], args[3])
-                obj.save()
+                # try to convert attribute value to int or float
+                try:
+                    setattr(obj, args[2], int(args[3]))
+                except ValueError:
+                    pass
+                try:
+                    setattr(obj, args[2], float(args[3]))
+                except ValueError:
+                    pass
                 # save changes to json file
+                obj.save()
             else:
                 print("** no instance found **")
 
