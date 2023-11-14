@@ -1,0 +1,22 @@
+header {
+    background-color: white;
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid #CCCCCC;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+.logo {
+    margin-left: 20px;
+    width: auto;
+    height: 100%;
+    background-image: url('images/logo.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    background-size: contain;
+    display: flex;
+    align-items: center;
+}
