@@ -3,14 +3,12 @@ header {
     height: 70px;
     width: 100%;
     border-bottom: 1px solid #CCCCCC;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
 }
 
 .logo {
-    background-image: url(../images/logo.png) no-repeat;
-    background-position: center left;
+    background-image: url(../images/logo.png);
+    background-repeat: no-repeat;
+    background-position: left;
     display: block;
     height: 100%;
     margin-left: 20px;
