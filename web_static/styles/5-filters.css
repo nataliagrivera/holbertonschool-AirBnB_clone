@@ -45,7 +45,7 @@
     width: 25%;
     order: 1;
     align-items: left;
-    margin-left: 40px;
+    padding-left: 30px;
     display: flex;
     font-weight: 600;
     color: black;
@@ -54,7 +54,7 @@
 .locations h3,
 .amenities h3 {
     font-weight: 600;
-    margin: 12px 0;
+    margin-bottom: 0;
     color: black;
 }
 
@@ -62,6 +62,6 @@
 .amenities h4 {
     font-weight: 400;
     font-size: 14px;
-    margin: auto 0;
+    margin-top: 5px;
     color: black
 }
