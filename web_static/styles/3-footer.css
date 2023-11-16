@@ -10,3 +10,7 @@ footer {
     position: fixed;
     bottom: 0;
 }
+
+footer p {
+    margin: 0;
+}
