@@ -4,9 +4,9 @@
     width: 100%;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
-    text-align: right;
-    display: flex;
-    justify-content: flex-start;
+    align-items: center;
+    display: inline-flex;
+    flex-wrap: wrap;
 }
 
 .search-button{
@@ -32,16 +32,21 @@
     width: 25%;
     border-right: 1px solid #DDDDDD;
     order: 0;
-    text-align: left;
+    align-items: left;
     margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
 }
 
 .amenities {
     height: 100%;
     width: 25%;
     order: 1;
-    text-align: left;
+    align-items: left;
     margin-left: 40px;
+    display: flex;
+    font-weight: 600;
 }
 
 .locations h3,
