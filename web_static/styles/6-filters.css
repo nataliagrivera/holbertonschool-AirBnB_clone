@@ -66,3 +66,25 @@
     margin-top: 5px;
     color: black
 }
+
+.popover{
+    display: none;
+    box-sizing: border-box;
+    background-color: #FAFAFA;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    list-style-type: none;
+    padding: 25px;
+    z-index: 1;
+}
+
+.locations:hover .popover,
+.amenities:hover .popover{
+    display: block;
+    width: 100%;
+    position: static;
+    align-items: left;
+    margin: 0;
+}
+
