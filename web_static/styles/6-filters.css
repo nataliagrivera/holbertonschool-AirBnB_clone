@@ -64,6 +64,7 @@
     font-weight: 400;
     font-size: 14px;
     margin-top: 5px;
+    margin-bottom: 15px;
     color: black
 }
 
@@ -86,5 +87,15 @@
     position: static;
     align-items: left;
     margin: 0;
+}
+
+.locations:hover .popover h3{
+    font-weight: 600;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+.popover li{
+    list-style-type: none;
 }
 
